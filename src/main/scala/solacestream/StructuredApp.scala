@@ -12,18 +12,6 @@ import events.EventListener;
 import payment.Debit;
 
 
-//public class MyCallback implements Callable{
-//  
-//  public void MyMethod(){
-//    
-//  }
-//}
-//
-//
-//public interface Callable{
-//  
-//}
-
 
 object StructuredApp {
   var spark : SparkSession = null
@@ -36,12 +24,6 @@ object StructuredApp {
   }
   
   def setup {
-    println("setup");
-    
-//  	val eventListener = new EventListener();
-//  	AppSingleton.getInstance().setCallback(eventListener);    
-//    val broker = new Broker();
-//    broker.setReceiver(eventListener);
     
 
     val spark2 = SparkSession.builder
@@ -53,13 +35,6 @@ object StructuredApp {
     import spark2.implicits._
     spark = spark2
     
-    //set new runtime options
-//    spark.conf.set("spark.sql.shuffle.partitions", 6)
-//    spark.conf.set("spark.executor.memory", "2g")
-    //get all settings
-//    val configMap:Map[String, String] = spark.conf.getAll()
-//    logger.info("=========================");
-//    logger.info(configMap);
     
   }
 
@@ -73,33 +48,21 @@ object StructuredApp {
     import myspark.implicits._
 
     
-//      val simpleDf = spark.read
-//              .format("solacestream")
-//              .load()
-//      simpleDf.show()
-
-    
     val simpleDf = spark.readStream
               .format("solacestream")
               .load()
 
-    simpleDf.printSchema
+    // simpleDf.printSchema
     simpleDf.createOrReplaceTempView("simpleDf")
 
     val sqlDf = spark
               .sql("SELECT firstName, count(firstName), sum(amount) from simpleDF group by firstName")
-    sqlDf.printSchema
-
-              
-//    val wordCounts = simpleDf.groupBy("firstName")
-//      .count()
-//    
-//    wordCounts.printSchema
-
+    // sqlDf.printSchema
          
      val query = sqlDf.writeStream
       .outputMode("complete")
       .format("console")
+      .option("checkpointLocation", "tmp/abcd")
       .start()
              
               
@@ -114,6 +77,9 @@ object StructuredApp {
     setup
     processor
     shutdown    
+
+
+
     Thread.sleep(100000);
     
   }
