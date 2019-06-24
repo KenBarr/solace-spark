@@ -3,7 +3,7 @@
       "fields": [
           {"name": "firstName", "type": "string"},
           {"name": "lastName", "type": "string"},
-          {"name": "amount",  "type": "float"},
+          {"name": "amount",  "type": "double"},
           {"name": "cardType",  "type": "string"},
           {"name": "cardNumber",  "type": "string"},
           {"name": "custNumber",  "type": "string"},

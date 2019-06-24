@@ -17,7 +17,7 @@ repositories {
 sourceSets {
 	main {
         scala {
-            srcDirs = ['src/main/scala', 'src/main/java']
+            srcDirs = ['src/main/scala','src/main/java']
         }
         java {
             srcDirs = []
@@ -26,6 +26,13 @@ sourceSets {
 }
 
 
+configurations.all {
+    resolutionStrategy {
+//        force 'com.fasterxml.jackson.core:jackson-core:2.9.9'    
+        force 'com.fasterxml.jackson.core:jackson-databind:2.6.7.1'    
+          
+    }
+}
 dependencies {
     // compile 'org.scala-lang:scala-library:2.12.8'
 
@@ -48,8 +55,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.spark/spark-streaming
     compile group: 'org.apache.spark', name: 'spark-streaming_2.12', version: '2.4.3'
 
+
     // https://mvnrepository.com/artifact/org.apache.avro/avro
-    compile group: 'org.apache.avro', name: 'avro', version: '1.9.0'
+    compile (group: 'org.apache.avro', name: 'avro', version: '1.9.0')
 
 }
 
@@ -63,7 +71,7 @@ avro {
 
 
 task run(type: JavaExec, dependsOn: classes) {
-    main = 'SimpleApp'
+    main = 'solacestream.StructuredApp'
     classpath sourceSets.main.runtimeClasspath
     classpath configurations.runtime
 }
