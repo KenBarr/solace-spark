@@ -3,6 +3,7 @@ plugins {
     id 'scala'
 
     id "com.commercehub.gradle.plugin.avro" version "0.9.1"
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
 
     // Apply the application plugin to add support for building an application
     // id 'application'
@@ -74,4 +75,12 @@ task run(type: JavaExec, dependsOn: classes) {
     main = 'solacestream.StructuredApp'
     classpath sourceSets.main.runtimeClasspath
     classpath configurations.runtime
+}
+
+shadowJar {
+
+    dependencies {
+        include(dependency(group: 'com.solacesystems', name: 'sol-jms', version: '10.6.1'))
+
+    }
 }
