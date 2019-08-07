@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>solace-spark-streaming</name>
+	<name>solace-spark</name>
 	<comment>Project solace-spark created by Buildship.</comment>
 	<projects>
 	</projects>

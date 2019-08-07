@@ -35,10 +35,16 @@ public class Broker {
     public Broker() throws Exception {
     	// log.info("Broker");
         // Create a JCSMP Session
-        String uri = "tcp://vmr-mr3e5sq7dacxp.messaging.solace.cloud:20480";
-        String username = "solace-cloud-client";
-        String password = "cge4fi7lj67ms6mnn2b4pe76g2";
-        String vpn = "msgvpn-8ksiwsp0mtv";
+        String uri = "tcp://localhost:55555";
+        String username = "default";
+        String password = "default";
+        String vpn = "default";
+
+//        String uri = "tcp://vmr-mr3e5sq7dacxp.messaging.solace.cloud:20480";
+//        String username = "solace-cloud-client";
+//        String password = "cge4fi7lj67ms6mnn2b4pe76g2";
+//        String vpn = "msgvpn-8ksiwsp0mtv";
+
 
         final JCSMPProperties properties = new JCSMPProperties();
         properties.setProperty(JCSMPProperties.HOST, uri);     		// host:port
@@ -69,7 +75,7 @@ public class Broker {
     			flow_prop, endpoint_props);  
 
     	cons.start();
-    	log.info("Listening for messages: "+ this.queueName);    	
+    	// log.info("Listening for messages: "+ this.queueName);    	
     }
 
 

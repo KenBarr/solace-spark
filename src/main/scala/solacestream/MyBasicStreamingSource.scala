@@ -236,12 +236,12 @@ class SimpleInputPartitionReader(aStart:Int, aEnd:Int) extends InputPartitionRea
   val logger = LoggerFactory.getLogger(classOf[SimpleInputPartitionReader])
   //logger.info("SimpleInputPartitionReader");		
 
-  logger.info("Creating connection");
+  // logger.info("Creating connection");
 	val eventListener = new EventListener();
 	AppSingleton.getInstance().setCallback(eventListener);    
   val broker = new Broker();
   broker.setReceiver(eventListener);
-  logger.info(	AppSingleton.getInstance().debits.toString());
+  // logger.info(	AppSingleton.getInstance().debits.toString());
 
   
 
@@ -294,7 +294,7 @@ class SimpleInputPartitionReader(aStart:Int, aEnd:Int) extends InputPartitionRea
   }
   
   def close(): Unit = {
-    logger.info("CLOSE!")
+    // logger.info("CLOSE!")
   }
 
 }
