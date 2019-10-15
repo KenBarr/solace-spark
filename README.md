@@ -59,3 +59,19 @@ gradle shadowJar
 Program Flow
 ( @todo clean up the code and remove the unncessary files)
 
+_StructuredApp.scala_ is the driver. The processor reads the stream from package 'solacestream' which is all defined in _MyBasicStreamingSource.scala_
+
+DataSourceV2 is a marker interface and implemented by DefaultSource
+DefaultSource also implements the MicroBatchReadSupport which is required for Streaming read in micro-batches.
+
+createMicroBatchReader returns the BasicMicroBatchDataSourceReader
+planInputPartitions in BasicMicroBatchDataSourceReader returns the list of InputPartitions. This is implemented by SimpleDataSourceReaderFactory
+@todo change the number of partitions to 1
+
+SimpleInputPartitionReader listens to Solace and returns the records
+
+
+
+
+
+
